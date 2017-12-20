@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="ds-admin">
+		<wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="ds-system-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ds-system-api/ds-system-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ds-mapper-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ds-mapper/ds-mapper">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ds-commons-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ds-commons/ds-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ds-user-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ds-user-api/ds-user-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/ds-admin/target/classes"/>
+        <property name="context-root" value="ds-admin"/>
+	</wb-module>
+</project-modules>
