@@ -33,6 +33,13 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 		</dependency>
+		<!-- fastdfs-client -->
+		<!-- https://mvnrepository.com/artifact/net.oschina.zcx7878/fastdfs-client-java -->
+		<dependency>
+		    <groupId>net.oschina.zcx7878</groupId>
+		    <artifactId>fastdfs-client-java</artifactId>
+		</dependency>
+
 		<!-- Spring Dependency Begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>

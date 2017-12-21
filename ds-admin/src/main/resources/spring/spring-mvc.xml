@@ -110,6 +110,7 @@
 						<value>admin/loginCheck.html</value>
 						<value>admin/logout.html</value>
 						<value>area/getdata.html</value>
+						<value>file/uploads.html</value>
 					</list>
 				</property>
 			</bean>

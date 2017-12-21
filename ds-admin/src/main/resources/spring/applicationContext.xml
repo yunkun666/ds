@@ -13,10 +13,8 @@
 	</context:component-scan>
 	
 	<context:annotation-config>
-		<!--开启注解处理器 -->
+	<!--开启注解处理器 -->
 	</context:annotation-config>
-		<!-- 引入属性文件 -->
-	<context:property-placeholder location="classpath:service.properties" ignore-unresolvable="true" />
 	
 	<!-- 静态导入 -->
   	<bean class="cn.com.handle.SpringContextHolder" lazy-init="false" />
