@@ -8,6 +8,7 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="idcard" jdbcType="VARCHAR" property="idcard" />
@@ -83,7 +84,7 @@
     <!--
       WARNING - @mbggenerated
     -->
-    id, name, sex, phone, address, idcard, username, pwd, state
+    id, name, sex, user_image, phone, address, idcard, username, pwd, state
   </sql>
   <select id="selectByExample" parameterType="cn.com.mapper.apdcn.pojo.DsSystemUserExample" resultMap="BaseResultMap">
     <!--
@@ -140,13 +141,13 @@
       WARNING - @mbggenerated
     -->
     insert into ds_system_user (id, name, sex, 
-      phone, address, idcard, 
-      username, pwd, state
-      )
+      user_image, phone, address, 
+      idcard, username, pwd, 
+      state)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
-      )
+      #{userImage,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyProperty="id" parameterType="cn.com.mapper.apdcn.pojo.DsSystemUser" useGeneratedKeys="true">
     <!--
@@ -162,6 +163,9 @@
       </if>
       <if test="sex != null">
         sex,
+      </if>
+      <if test="userImage != null">
+        user_image,
       </if>
       <if test="phone != null">
         phone,
@@ -191,6 +195,9 @@
       </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null">
+        #{userImage,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
@@ -236,6 +243,9 @@
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
       </if>
+      <if test="record.userImage != null">
+        user_image = #{record.userImage,jdbcType=VARCHAR},
+      </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
@@ -267,6 +277,7 @@
     set id = #{record.id,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
+      user_image = #{record.userImage,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       idcard = #{record.idcard,jdbcType=VARCHAR},
@@ -288,6 +299,9 @@
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null">
+        user_image = #{userImage,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
@@ -317,6 +331,7 @@
     update ds_system_user
     set name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
+      user_image = #{userImage,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       idcard = #{idcard,jdbcType=VARCHAR},

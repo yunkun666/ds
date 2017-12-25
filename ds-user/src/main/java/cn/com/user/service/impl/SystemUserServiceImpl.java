@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 import cn.com.mapper.apdcn.custom.DsSystemUserWriteMapper;
 import cn.com.mapper.apdcn.pojo.DsSystemUser;
-import cn.com.service.user.DsSystemUserService;
+import cn.com.service.user.SystemUserService;
 import cn.com.util.RedisUtil;
 
-@Service("dsSystemUserService")
-public class DsSystemUserServiceImpl implements DsSystemUserService {
+@Service("systemUserService")
+public class SystemUserServiceImpl implements SystemUserService {
 	@SuppressWarnings("unused")
 	@Autowired
 	private DsSystemUserWriteMapper dsSystemUserWriteMapper;

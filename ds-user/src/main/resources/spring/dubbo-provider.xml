@@ -16,7 +16,7 @@
 	<dubbo:protocol name="dubbo" port="20880" />
 
 	<!-- 用户服务接口 -->
-	<dubbo:service interface="cn.com.service.user.DsSystemUserService" ref="dsSystemUserService" retries="0" />
+	<dubbo:service interface="cn.com.service.user.SystemUserService" ref="systemUserService" retries="0" />
 
 
 	<!-- 登陆接口 -->

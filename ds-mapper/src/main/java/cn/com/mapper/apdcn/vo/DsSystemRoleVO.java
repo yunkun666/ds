@@ -29,6 +29,15 @@ public class DsSystemRoleVO extends BaseDTO {
      * @mbggenerated
      */
     private String name;
+    
+    /**
+     * ds_system_role.image_url
+     * 头像
+     * VARCHAR(255)
+     *
+     * @mbggenerated
+     */
+    private String imageUrl;
 
     /**
      * ds_system_role.detail
@@ -106,4 +115,12 @@ public class DsSystemRoleVO extends BaseDTO {
     public void setLevel(String level) {
         this.level = level == null ? null : level.trim();
     }
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 }

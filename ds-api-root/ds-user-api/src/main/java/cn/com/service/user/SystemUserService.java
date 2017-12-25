@@ -7,7 +7,7 @@ import cn.com.mapper.apdcn.pojo.DsSystemUser;
  * @author I'amour solitaire
  *
  */
-public interface DsSystemUserService {
+public interface SystemUserService {
 	
 	public int transactionTest(DsSystemUser record);
 	

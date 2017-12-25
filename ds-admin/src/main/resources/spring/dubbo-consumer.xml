@@ -13,8 +13,16 @@
 	
 	<!-- 登陆接口 -->
 	<dubbo:reference interface="cn.com.service.login.LoginService" id="loginService" check="false" />
-	<!-- 用户服务接口 -->
-	<dubbo:reference interface="cn.com.service.user.DsSystemUserService" id="dsSystemUserService" check="false" />
+	<!-- 角色 -->
+	<dubbo:reference interface="cn.com.service.role.DsSystemRoleService" id="dsSystemRoleService" check="false" />
+	<!-- 角色功能 -->
+	<dubbo:reference interface="cn.com.service.role.DsSystemRoleFunctionService" id="dsSystemRoleFunctionService" check="false" />
+	<!-- 角色功能类型 -->
+	<dubbo:reference interface="cn.com.service.role.DsSystemRoleFunctionTypeService" id="dsSystemRoleFunctionTypeService" check="false" />
+	<!-- 功能 -->
+	<dubbo:reference interface="cn.com.service.function.DsSystemFunctionService" id="dsSystemFunctionService" check="false" />
+	<!-- ceshi -->
+	<dubbo:reference interface="cn.com.service.user.SystemUserService" id="systemUserService" check="false" />
 
 
 </beans>  

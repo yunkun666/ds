@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 			
-	<context:property-placeholder location="classpath:redis-colony.properties" ignore-unresolvable="true"  />
+<!-- 	<context:property-placeholder location="classpath:redis-colony.properties" ignore-unresolvable="true"  /> -->
 	
 	 <!--配置 jedis pool-->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">

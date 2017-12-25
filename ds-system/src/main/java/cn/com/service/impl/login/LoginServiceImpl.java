@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import cn.com.mapper.apdcn.custom.DsSystemFunctionWriteMapper;
 import cn.com.mapper.apdcn.custom.DsSystemRoleWriteMapper;
 import cn.com.mapper.apdcn.custom.DsSystemUserWriteMapper;
+import cn.com.mapper.apdcn.model.DsSystemRoleModel;
 import cn.com.mapper.apdcn.model.DsSystemUserModel;
 import cn.com.mapper.apdcn.pojo.DsSystemUser;
 import cn.com.mapper.apdcn.vo.DsSystemFunctionVO;
@@ -33,9 +34,9 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public Map<String, List<DsSystemFunctionVO>> getRoleMenuPower() {
 		Map<String, List<DsSystemFunctionVO>> roleMenuPowerMap = new HashMap<String, List<DsSystemFunctionVO>>();
-		List<DsSystemRoleVO> dsSystemRoleList = dsSystemRoleWriteMapper.getListVO(new DsSystemRoleVO());
-		for (DsSystemRoleVO dsSystemRoleVO : dsSystemRoleList) {
-			String roleid = dsSystemRoleVO.getId();
+		List<DsSystemRoleModel> dsSystemRoleList = dsSystemRoleWriteMapper.getListVO(new DsSystemRoleVO());
+		for (DsSystemRoleModel model : dsSystemRoleList) {
+			String roleid = model.getId();
 			// 查询菜单列表
 			MenuPowerVO menuPowerVO = new MenuPowerVO();
 			List<MenuPowerVO> menupowerList = new ArrayList<MenuPowerVO>();

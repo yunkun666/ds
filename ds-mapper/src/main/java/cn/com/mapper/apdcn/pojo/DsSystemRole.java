@@ -10,7 +10,7 @@ public class DsSystemRole implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 747483886776133523L;
+	private static final long serialVersionUID = 1677434965185030069L;
 
 	/**
      * ds_system_role.id
@@ -29,6 +29,15 @@ public class DsSystemRole implements Serializable {
      * @mbggenerated
      */
     private String name;
+
+    /**
+     * ds_system_role.image_url
+     * 头像
+     * VARCHAR(255)
+     *
+     * @mbggenerated
+     */
+    private String imageUrl;
 
     /**
      * ds_system_role.detail
@@ -75,6 +84,16 @@ public class DsSystemRole implements Serializable {
     /* @mbggenerated */
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    /* @mbggenerated */
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    /* @mbggenerated */
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
     }
 
     /* @mbggenerated */

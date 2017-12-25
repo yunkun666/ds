@@ -19,7 +19,7 @@
    	<resultMap id="BaseResultMapVO" type="cn.com.mapper.apdcn.vo.DsSystemRoleVO">
 	</resultMap>
 	
-	<select id="getListVO" parameterType="cn.com.mapper.apdcn.vo.DsSystemRoleVO" resultMap="BaseResultMapVO">
+	<select id="getListVO" parameterType="cn.com.mapper.apdcn.vo.DsSystemRoleVO" resultType="cn.com.mapper.apdcn.model.DsSystemRoleModel">
 		SELECT
 			tb.*,ts.name pName
 		FROM

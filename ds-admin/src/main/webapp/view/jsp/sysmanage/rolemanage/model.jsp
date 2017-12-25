@@ -1,5 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+    ul,li,ol {
+      margin: 0;
+      padding: 0;
+    }
+    .fine-uploader {
+      overflow: hidden;
+    }
+    .ke-container {
+        width: 570px !important;
+    }
+    .pic-upload-btn {
+        position: relative;
+        overflow: hidden;
+    }
+    .pic-upload-btn img.pic-upload-show {
+        width: 100%;
+    }
+    .pic-upload-btn input.upload-input {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 1000px;
+        height: 1000px;
+    }
+    .list-item {
+        width: initial;
+        height: initial;
+    }
+</style>
+
 
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 	<div class="page-header pull-left">
@@ -42,7 +73,16 @@
 									</select>
 								</div>
 							</div>
-							
+							 <div class="form-group">
+                                <label class="col-md-3 control-label"><span class="require">*</span> 主图：</label>
+                                <div class="col-md-6">
+                                    <div id="fine-uploader-imageUrl" class="fine-uploader"></div>
+                                    <div class="goodsimg imageUrl" style="<c:if test="${empty dto.imageUrl}">display:none;</c:if>">
+	                                   	<input type="hidden" id="imageUrl" name="imageUrl" value="${dto.imageUrl }" class="form-control" readonly />
+									    <img id="imageUrl_" style="width: 35px; height: 35px;" src="${dto.imageUrl }"/>
+                                    </div>
+                                </div>
+                            </div>
 							 <div class="form-group">
                                 <label class="col-md-3 control-label">等级:</label>
                                 <div class="col-md-6">
@@ -75,7 +115,37 @@
 	<!-- /.row -->
 </div>
 <!-- /.page-content -->
+
+<!-- 上传商品图片的模板 -->
+<script type="text/template" id="goodsimg-template">
+    <div class="qq-uploader-selector" qq-drop-area-text="Drop files here">
+        <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+            <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+        </div>
+        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+            <span class="qq-upload-drop-area-text-selector"></span>
+        </div>
+        <div class="qq-upload-button-selector">
+            <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                </li>
+            </ul>
+            <div>
+                <button type="submit" class="btn btn-success">上传图片</button>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script type="text/javascript">
+	bindUploader('fine-uploader-imageUrl', function(id,name,responseJSON,xhr) {
+		if(responseJSON.success) {
+			$('.goodsimg.imageUrl').show();
+			$('#imageUrl').val(responseJSON.data);
+			$('#imageUrl_').attr('src', responseJSON.data);
+		}
+	});
+
 	$('#contentForm .btn.btn-success').on('click', function() {
 		var name = $.trim($('#name').val());
 		if(!name){

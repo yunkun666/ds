@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public interface FileManagerConfig extends Serializable {
 
-    public static final String FILE_DEFAULT_AUTHOR = "l'amour solitaire";
+    public static final String FILE_DEFAULT_AUTHOR = "mayunkun";
 
     public static final String PROTOCOL = "http://";
 

@@ -10,7 +10,7 @@ public class DsSystemUser implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 3052357686020947937L;
+	private static final long serialVersionUID = -5341929340887458725L;
 
 	/**
      * ds_system_user.id
@@ -23,7 +23,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.name
-     * 
+     * 姓名
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -32,7 +32,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.sex
-     * 
+     * 性别 1:男 2:女
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -40,8 +40,17 @@ public class DsSystemUser implements Serializable {
     private String sex;
 
     /**
+     * ds_system_user.user_image
+     * 用户头像
+     * VARCHAR(255)
+     *
+     * @mbggenerated
+     */
+    private String userImage;
+
+    /**
      * ds_system_user.phone
-     * 
+     * 电话
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -50,7 +59,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.address
-     * 
+     * 地址
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -59,7 +68,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.idcard
-     * 
+     * 身份证号
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -68,7 +77,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.username
-     * 
+     * 账号
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -77,7 +86,7 @@ public class DsSystemUser implements Serializable {
 
     /**
      * ds_system_user.pwd
-     * 
+     * 密码
      * VARCHAR(255)
      *
      * @mbggenerated
@@ -121,6 +130,16 @@ public class DsSystemUser implements Serializable {
     /* @mbggenerated */
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    /* @mbggenerated */
+    public String getUserImage() {
+        return userImage;
+    }
+
+    /* @mbggenerated */
+    public void setUserImage(String userImage) {
+        this.userImage = userImage == null ? null : userImage.trim();
     }
 
     /* @mbggenerated */

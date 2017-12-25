@@ -338,6 +338,76 @@ public class DsSystemUserExample extends BaseExample {
             return (Criteria) this;
         }
 
+        public Criteria andUserImageIsNull() {
+            addCriterion("user_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageIsNotNull() {
+            addCriterion("user_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageEqualTo(String value) {
+            addCriterion("user_image =", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageNotEqualTo(String value) {
+            addCriterion("user_image <>", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageGreaterThan(String value) {
+            addCriterion("user_image >", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageGreaterThanOrEqualTo(String value) {
+            addCriterion("user_image >=", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageLessThan(String value) {
+            addCriterion("user_image <", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageLessThanOrEqualTo(String value) {
+            addCriterion("user_image <=", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageLike(String value) {
+            addCriterion("user_image like", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageNotLike(String value) {
+            addCriterion("user_image not like", value, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageIn(List<String> values) {
+            addCriterion("user_image in", values, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageNotIn(List<String> values) {
+            addCriterion("user_image not in", values, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageBetween(String value1, String value2) {
+            addCriterion("user_image between", value1, value2, "userImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserImageNotBetween(String value1, String value2) {
+            addCriterion("user_image not between", value1, value2, "userImage");
+            return (Criteria) this;
+        }
+
         public Criteria andPhoneIsNull() {
             addCriterion("phone is null");
             return (Criteria) this;

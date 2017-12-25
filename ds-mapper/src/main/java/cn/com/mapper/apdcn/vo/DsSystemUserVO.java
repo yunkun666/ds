@@ -38,6 +38,15 @@ public class DsSystemUserVO extends BaseDTO {
      * @mbggenerated
      */
     private String sex;
+    
+    /**
+     * ds_system_user.user_image
+     * 用户头像
+     * VARCHAR(255)
+     *
+     * @mbggenerated
+     */
+    private String userImage;
 
     /**
      * ds_system_user.phone
@@ -182,4 +191,12 @@ public class DsSystemUserVO extends BaseDTO {
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
     }
+
+	public String getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
 }

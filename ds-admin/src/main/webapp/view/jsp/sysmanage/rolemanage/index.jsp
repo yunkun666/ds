@@ -102,11 +102,13 @@ jQuery(function($) {
 			{
 				name : 'name',
 				index : 'name',
+				align : 'center',
 				width : 100
 			},
 			{
 				name : 'pName',
 				index : 'pName',
+				align : 'center',
 				width : 100,
 // 				formatter : function(cellvalue, options, rowObject) {
 // 					if(cellvalue == '0'){
@@ -118,11 +120,12 @@ jQuery(function($) {
 				name : 'level',
 				index : 'level',
 				width : 100,
-				align : 'right'
+				align : 'center',
 			},
 			{
 				name : 'detail',
 				index : 'detail',
+				align : 'center',
 				width : 100
 			},
 			{
@@ -130,6 +133,7 @@ jQuery(function($) {
 				index : 'id',
 				width : 200,
 				fixed : true,
+				align : 'center',
 				sortable : false,
 				resize : false,
 				formatter : function(cellvalue, options, rowObject) {

@@ -6,8 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.csource.common.NameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,17 +18,65 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.com.model.FastDFSFile;
+import cn.com.model.Result;
 import cn.com.model.ResultFiles;
 import cn.com.util.ConstantsUtil;
 import cn.com.util.FileManager;
 
 @Controller
-@RequestMapping("/file")
+@RequestMapping("/upload")
 public class FileController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * 文件上传
+	 * @param fileToUpload
+	 * @param request
+	 * @param response
+	 * @param name
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/uploadindexvalidate.html")
+	public @ResponseBody Result multiUploadIndex(@RequestParam(value = "file", required = false) MultipartFile fileToUpload,
+			HttpServletRequest request, HttpServletResponse response, String name, Model model) {
+		Result ajaxJson = new Result(false, ConstantsUtil.HTTPRESPONSE_STATE_ERROR);
+		response.setContentType("text/plain; charset=UTF-8");
+		String originalFilename = "";
+		logger.info("文件上传开始……");
+		try {
+			if (fileToUpload.isEmpty()) {
+				return ajaxJson;
+			} else {
+				originalFilename = fileToUpload.getOriginalFilename();
+				logger.debug(originalFilename+"开始……");
+
+				// 获取文件后缀名 
+			    String ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+			    FastDFSFile file = new FastDFSFile(fileToUpload.getBytes(),ext);
+			    NameValuePair[] meta_list = null;
+			    String filePath = FileManager.upload(file,meta_list);
+			    ajaxJson = new Result(true, filePath, ConstantsUtil.HTTPRESPONSE_STATE_TRUE);
+			}
+		} catch (Exception e) {
+			logger.info("文件[" + originalFilename + "]上传失败,堆栈轨迹如下");
+			ajaxJson.setMsg(e.getMessage());
+			e.printStackTrace();
+		}
+		return ajaxJson;
+	}
+	
+	/**
+	 * 文件上传
+	 * @param fileToUpload
+	 * @param request
+	 * @param responses
+	 * @param name
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/uploads.html")
-	public @ResponseBody ResultFiles multiUploadIndex(@RequestParam(value = "file", required = false) MultipartFile[] fileToUpload,
+	public @ResponseBody ResultFiles multiUploadIndexs(@RequestParam(value = "file", required = false) MultipartFile[] fileToUpload,
 			HttpServletRequest request, HttpServletResponse response, String name, Model model) {
 		List<ResultFiles.Obj> list = new ArrayList<ResultFiles.Obj>();
 		ResultFiles ajaxJson = new ResultFiles(false, ConstantsUtil.HTTPRESPONSE_STATE_ERROR);
@@ -65,6 +115,26 @@ public class FileController {
 			e.printStackTrace();
 		}
 		return ajaxJson;
+	}
+	
+	/**
+	 * 文件下载
+	 * @param fileToUpload
+	 * @param request
+	 * @param response
+	 * @param name
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/down.html")
+	public ResponseEntity<byte[]> down(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("文件下载开始……");
+		try {
+			return FileManager.download(request.getParameter("group"), request.getParameter("remoteFileName"), request.getParameter("path"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
