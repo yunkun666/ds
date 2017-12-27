@@ -1,24 +1,25 @@
 package cn.com.util;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
+import org.csource.common.MyException;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.ClientGlobal;
-import org.csource.fastdfs.StorageClient1;
 import org.csource.fastdfs.StorageServer;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerGroup;
 import org.csource.fastdfs.TrackerServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import cn.com.model.FastDFSFile;
 import cn.com.model.FileManagerConfig;
 
 /**
@@ -36,18 +37,19 @@ public class FileManager implements FileManagerConfig {
 	
 	private static Logger logger = LoggerFactory.getLogger(FileManager.class);
 	
-	private static StorageClient1 storageClient1 = null;
+	@Autowired
+	private static MyStorageClient storageClient1;
 	
-	static {
+	public FileManager() {
 		try {
-//			ClientGlobal.init(FileManager.class.getClassLoader().getResource("").getPath()+File.separator+"fdfs_client.conf");
+			System.out.println("fastdfs installing……");
 			ClientGlobal.setG_charset(CustomizedPropertyPlaceholderConfigurer.getContextProperty("charset").toString());
 			ClientGlobal.setG_anti_steal_token(Boolean.parseBoolean(CustomizedPropertyPlaceholderConfigurer.getContextProperty("http.anti_steal_token").toString()));
-			ClientGlobal.setG_connect_timeout(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("connect_timeout").toString()));
-			ClientGlobal.setG_network_timeout(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("network_timeout").toString()));
+			ClientGlobal.setG_connect_timeout(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("connect_timeout").toString())*1000);
+			ClientGlobal.setG_network_timeout(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("network_timeout").toString())*1000);
 			ClientGlobal.setG_secret_key(CustomizedPropertyPlaceholderConfigurer.getContextProperty("http.secret_key").toString());
 			ClientGlobal.setG_tracker_http_port(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("http.tracker_http_port").toString()));
-			//Tracker服务器列表  
+			/** TRACKER服务器列表  */
 			InetSocketAddress[] tracker_servers = new InetSocketAddress[1];  
 			tracker_servers[0] = new InetSocketAddress(InetAddress.getByName(CustomizedPropertyPlaceholderConfigurer.getContextProperty("tracker_server1").toString()),Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("tracker_port1").toString()));  
 			ClientGlobal.setG_tracker_group(new TrackerGroup(tracker_servers));
@@ -61,7 +63,7 @@ public class FileManager implements FileManagerConfig {
 			if (null == storageServer) {
 				logger.info("getStoreStorage return null");
 			}
-			storageClient1 = new StorageClient1(trackerServer, storageServer);
+			storageClient1 = new MyStorageClient(trackerServer, storageServer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,15 +75,17 @@ public class FileManager implements FileManagerConfig {
      * @param file
      * @param valuePairs
      * @return
+     * @throws MyException 
+     * @throws IOException 
      */
-    public static String upload(FastDFSFile file,NameValuePair[] valuePairs) {
+    public String upload(byte[] file, String fileName, NameValuePair[] meta_list) throws IOException, MyException {
         String uploadResults = null;
         try {
-            uploadResults = storageClient1.upload_file1(file.getContent(),file.getExt(), valuePairs);
+            uploadResults = storageClient1.upload_file1(file,fileName, meta_list);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String fileAbsolutePath = "http://192.168.43.183:8888"
+        String fileAbsolutePath = CustomizedPropertyPlaceholderConfigurer.getContextProperty("storage1").toString()
                 + SEPARATOR + uploadResults;
         return fileAbsolutePath;
     }
@@ -94,7 +98,7 @@ public class FileManager implements FileManagerConfig {
      * @param specFileName
      * @return
      */
-    public static ResponseEntity<byte[]> download(String groupName,
+    public ResponseEntity<byte[]> download(String groupName,
             String remoteFileName,String specFileName) {
         byte[] content = null;
         HttpHeaders headers = new HttpHeaders();

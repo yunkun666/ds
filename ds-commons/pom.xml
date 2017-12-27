@@ -34,9 +34,9 @@
 			<artifactId>jedis</artifactId>
 		</dependency>
 		<!-- fastdfs-client -->
-		<!-- https://mvnrepository.com/artifact/net.oschina.zcx7878/fastdfs-client-java -->
+		<!-- https://mvnrepository.com/artifact/net.arccode/fastdfs-client-java -->
 		<dependency>
-		    <groupId>net.oschina.zcx7878</groupId>
+		    <groupId>net.arccode</groupId>
 		    <artifactId>fastdfs-client-java</artifactId>
 		</dependency>
 
