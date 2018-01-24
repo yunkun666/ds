@@ -42,7 +42,7 @@ public class FileManager implements FileManagerConfig {
 	
 	public FileManager() {
 		try {
-			System.out.println("fastdfs installing……");
+			logger.info("FASTDFS INSTALLING……");
 			ClientGlobal.setG_charset(CustomizedPropertyPlaceholderConfigurer.getContextProperty("charset").toString());
 			ClientGlobal.setG_anti_steal_token(Boolean.parseBoolean(CustomizedPropertyPlaceholderConfigurer.getContextProperty("http.anti_steal_token").toString()));
 			ClientGlobal.setG_connect_timeout(Integer.parseInt(CustomizedPropertyPlaceholderConfigurer.getContextProperty("connect_timeout").toString())*1000);

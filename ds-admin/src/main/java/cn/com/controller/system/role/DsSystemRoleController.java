@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import cn.com.service.role.DsSystemRoleFunctionService;
 import cn.com.service.role.DsSystemRoleFunctionTypeService;
 import cn.com.service.role.DsSystemRoleService;
 import cn.com.util.ConstantsUtil;
+import cn.com.util.UUIDGenerator;
 
 /**
  * <p>
@@ -125,6 +127,8 @@ public class DsSystemRoleController {
 					if (roleList != null && roleList.size() > 0) {
 						return new Result(false, ConstantsUtil.USER_ROLE_REG_REPEAT);
 					}
+					BeanUtils.copyProperties(vo, pojo);
+					pojo.setId(UUIDGenerator.generate());
 					roleService.insert(pojo);
 				}
 				result = new Result(true, ConstantsUtil.HTTPRESPONSE_STATE_TRUE);
@@ -180,11 +184,12 @@ public class DsSystemRoleController {
 			String[] menulist = menuids.split(",");
 			if (menulist.length > 0) {
 				for (String str : menulist) {
-					DsSystemRoleFunction DsSystemRoleFunction = new DsSystemRoleFunction();
-					DsSystemRoleFunction.setRoleid(id);
-					DsSystemRoleFunction.setFunctionid(str);
-					dsSystemRoleFunctionService.insert(DsSystemRoleFunction);
-					RoleFunctionMap.put(id + "_" + str, DsSystemRoleFunction.getId());
+					DsSystemRoleFunction dsSystemRoleFunction = new DsSystemRoleFunction();
+					dsSystemRoleFunction.setId(UUIDGenerator.generate());
+					dsSystemRoleFunction.setRoleid(id);
+					dsSystemRoleFunction.setFunctionid(str);
+					dsSystemRoleFunctionService.insert(dsSystemRoleFunction);
+					RoleFunctionMap.put(id + "_" + str, dsSystemRoleFunction.getId());
 				}
 			}
 			result = new Result(true, ConstantsUtil.HTTPRESPONSE_STATE_TRUE);
@@ -199,7 +204,7 @@ public class DsSystemRoleController {
 		Result result = new Result(false, ConstantsUtil.HTTPRESPONSE_STATE_ERROR);
 		try {
 			String roleId = DsSystemRole.getId();
-			if (StringUtils.isBlank(roleId)) {
+			if (!StringUtils.isBlank(roleId)) {
 				DsSystemRoleFunctionVO vo = new DsSystemRoleFunctionVO();
 				vo.setRoleid(roleId);
 				List<DsSystemRoleFunctionModel> rflist = dsSystemRoleFunctionService.getListVO(vo);
@@ -217,7 +222,7 @@ public class DsSystemRoleController {
 				}
 				List<DsSystemFunctionVO> menulist = dsSystemFunctionService.getNodeList(new DsSystemFunctionVO());
 
-				for (DsSystemRoleFunction systemRoleFunction : rflist) {
+				for (DsSystemRoleFunctionModel systemRoleFunction : rflist) {
 					List<DsSystemRoleFunctionModel> rftlist = DsSystemRoleFunctionModelMap.get(systemRoleFunction.getId());
 					String rftids = "";
 					if (rftlist != null && rftlist.size() > 0) {

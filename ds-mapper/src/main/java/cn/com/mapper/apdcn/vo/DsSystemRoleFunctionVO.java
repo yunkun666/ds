@@ -20,6 +20,8 @@ public class DsSystemRoleFunctionVO extends BaseDTO {
      * @mbggenerated
      */
     private String id;
+    private String rolefunctionid;
+    private String functiontypeid;
 
     /**
      * ds_system_role_function.roleid
@@ -68,4 +70,20 @@ public class DsSystemRoleFunctionVO extends BaseDTO {
     public void setFunctionid(String functionid) {
         this.functionid = functionid == null ? null : functionid.trim();
     }
+
+	public String getRolefunctionid() {
+		return rolefunctionid;
+	}
+
+	public void setRolefunctionid(String rolefunctionid) {
+		this.rolefunctionid = rolefunctionid;
+	}
+
+	public String getFunctiontypeid() {
+		return functiontypeid;
+	}
+
+	public void setFunctiontypeid(String functiontypeid) {
+		this.functiontypeid = functiontypeid;
+	}
 }

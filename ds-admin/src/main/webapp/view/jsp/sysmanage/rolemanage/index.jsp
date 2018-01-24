@@ -97,13 +97,29 @@ jQuery(function($) {
 			repeatitems : false
 		},
 
-		colNames : [ '名称', '上级角色', '等级', '详情', '操作' ],
+		colNames : [ '名称', '头像', '上级角色', '等级', '详情', '操作' ],
 		colModel : [
 			{
 				name : 'name',
 				index : 'name',
 				align : 'center',
 				width : 100
+			},
+			{
+				name: 'imageUrl', 
+				index: 'imageUrl', 
+				width: 80, 
+				height: 50, 
+				align : 'center',
+				sortable: false, 
+				editable: false, 
+				formatter : function(cellvalue, options, rowObject) {
+					var ret = '';
+					if(cellvalue !=''){
+						ret = '<img alt="" src="' + cellvalue + '" height="50px" width="80px">';
+					}
+					 return ret;
+				}
 			},
 			{
 				name : 'pName',

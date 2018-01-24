@@ -79,7 +79,7 @@ public class DsSystemRoleServiceImpl implements DsSystemRoleService{
 	@Override
 	public boolean update(DsSystemRole pojo) {
 		// TODO Auto-generated method stub
-		return dsSystemRoleWriteMapper.deleteByPrimaryKey(pojo.getId())>0?true:false;
+		return dsSystemRoleWriteMapper.updateByPrimaryKey(pojo)>0?true:false;
 	}
 	
 

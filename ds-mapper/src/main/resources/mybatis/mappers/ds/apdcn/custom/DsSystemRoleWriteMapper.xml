@@ -21,7 +21,13 @@
 	
 	<select id="getListVO" parameterType="cn.com.mapper.apdcn.vo.DsSystemRoleVO" resultType="cn.com.mapper.apdcn.model.DsSystemRoleModel">
 		SELECT
-			tb.*,ts.name pName
+			tb.id
+			,tb.name
+			,tb.image_url imageUrl
+			,tb.detail
+			,tb.pid
+			,tb.level
+			,ts.name pName
 		FROM
 			ds_system_role tb left join ds_system_role ts on tb.pid = ts.id
 		WHERE
