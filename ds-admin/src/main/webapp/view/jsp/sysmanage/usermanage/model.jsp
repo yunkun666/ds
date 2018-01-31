@@ -62,13 +62,13 @@
                           <div class="form-group">
                               <label class="col-md-3 control-label">地址:</label>
                               <div class="col-md-2">
-	                        <select class="form-control" id="province" onchange="setAddress(this, 'city');">
-	                        	<option value="">请选择</option>
-	                        	<c:forEach var="var" items="${provinces }">
-	                           	<option value="${var.id }" <c:if test="${var.name eq province }">selected</c:if>>${var.name }</option>
-	                        	</c:forEach>
-	                        </select>
-	                    </div>
+		                        <select class="form-control" id="province" onchange="setAddress(this, 'city');">
+		                        	<option value="">请选择</option>
+		                        	<c:forEach var="var" items="${provinces }">
+		                           	<option value="${var.id }" <c:if test="${var.name eq province }">selected</c:if>>${var.name }</option>
+		                        	</c:forEach>
+		                        </select>
+		                    </div>
 	                    <c:if test="${not empty city }">
 		                    <div class="col-md-2">
 		                        <select class="form-control" id="city" onchange="setAddress(this, 'county');">

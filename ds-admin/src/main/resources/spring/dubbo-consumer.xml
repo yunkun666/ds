@@ -21,6 +21,8 @@
 	<dubbo:reference interface="cn.com.service.role.DsSystemRoleFunctionTypeService" id="dsSystemRoleFunctionTypeService" check="false" />
 	<!-- 功能 -->
 	<dubbo:reference interface="cn.com.service.function.DsSystemFunctionService" id="dsSystemFunctionService" check="false" />
+	<!-- 用户 -->
+	<dubbo:reference interface="cn.com.service.user.DsSystemUserService" id="dsSystemUserService" check="false" />
 	<!-- ceshi -->
 	<dubbo:reference interface="cn.com.service.user.SystemUserService" id="systemUserService" check="false" />
 

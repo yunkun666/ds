@@ -27,5 +27,6 @@
 	<dubbo:service interface="cn.com.service.role.DsSystemRoleFunctionTypeService" ref="dsSystemRoleFunctionTypeService" retries="0" />
 	<!-- 角色功能 -->
 	<dubbo:service interface="cn.com.service.role.DsSystemRoleFunctionService" ref="dsSystemRoleFunctionService" retries="0" />
-
+	<!-- 用户功能 -->
+	<dubbo:service interface="cn.com.service.user.DsSystemUserService" ref="dsSystemUserService" retries="0" />
 </beans>  

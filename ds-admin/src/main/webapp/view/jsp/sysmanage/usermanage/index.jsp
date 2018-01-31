@@ -99,24 +99,28 @@ jQuery(function($) {
 			{
 				name : 'name',
 				index : 'name',
+				align : 'center',
 				width : 100
 			},
 			{
 				name : 'rolename',
 				index : 'rolename',
 				width : 100,
+				align : 'center',
 				formatter : function(cellvalue, options, rowObject) {
 					return '超级管理员';
 				}
 			},
 			{
 				name : 'phone',
+				align : 'center',
 				index : 'phone',
 				width : 100
 			},
 			{
 				name : 'address',
 				index : 'address',
+				align : 'center',
 				width : 160,
 				formatter : function(cellvalue, options, rowObject) {
 					if(cellvalue !=null && cellvalue.indexOf(',') > -1) {
@@ -144,6 +148,7 @@ jQuery(function($) {
 				name : 'id',
 				index : 'id',
 				width : 200,
+				align : 'center',
 				fixed : true,
 				sortable : false,
 				resize : false,
@@ -200,7 +205,7 @@ $('#add-btn').on("click", function(){
 
 //编辑
 function _edit(id) {
-	ajaxContent(_path + "/admin/user/modelindex.html?id=" + id);
+	ajaxContent(_path + "/admin/user/model.html?id=" + id);
 }
 
 //删除
